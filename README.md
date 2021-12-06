@@ -15,7 +15,7 @@ The application reads data from Tandoor using its API, and a valid token must be
 
 ### Supported Architectures
 
-Pulling from DockerHub should provide the correct image for your system. The application is built on the python-alpine base image. See [DockerHub Repository](https://hub.docker.com/r/nbpub/recipelook)
+Pulling from DockerHub should provide the correct image for your system. The application is built on the python-alpine base image. The "tandoor" tag is necessary to pull the version build for use with Tandoor. See [DockerHub Repository](https://hub.docker.com/r/nbpub/recipelook),
 
 Images are available for the following architectures:
 
@@ -31,9 +31,7 @@ Install and run using docker, examples provided below. See [LinuxServer.io](http
 
 Access main page at `<your-ip>:5000`. See [below](https://github.com/NBPub/RecipeBook-Tandoor#parameters) for changing port number.
 
-### Usage
-
-*This section is in progress. Docker images not available and details subject to change.*    
+### Usage  
     
 This container uses data from your Tandoor instance by calling its API. Therefore, an appropriate API Token and URL are required for it to function. Data for the homepage will be saved, and only refreshing the data will require a valid token and URL. However, each recipe-page needs to use the API, and therefore Tandoor must be accessible.
 
