@@ -122,8 +122,6 @@ I do not use Tandoor, and built this application with recipes downloaded from th
 
 ## Screenshots
 
-*current images are from NextCloud version, will be adjusted*
-
 <details>
   <summary>Home Page, lists all recipes</summary>
   
@@ -143,33 +141,49 @@ I do not use Tandoor, and built this application with recipes downloaded from th
 </details>
 
 <details>
-  <summary>Recipe Page example, full-sized image</summary>
+  <summary>Recipe Page example, with image</summary>
     
-  ![Home](/Screenshots_Kindle/ex_full.png "Big Image")
+  ![Home](/Screenshots_Kindle/recipe_Image.png "Image")
 </details>
 
 
 <details>
-  <summary>Recipe Page example, thumb-sized image, Ingredients</summary>
+  <summary>Recipe Page example, without image</summary>
     
-  ![Home](/Screenshots_Kindle/ex_thumb.png "Small Image")
+  ![Home](/Screenshots_Kindle/recipe_NoImage.png "No Image")
 </details>
 
 
 <details>
-  <summary>Recipe Page example, continued . . . Instructions</summary>
+  <summary>Recipe Page example, single Step</summary>
     
-  ![Home](/Screenshots_Kindle/instructions.png "Instructions")
+  ![Home](/Screenshots_Kindle/recipe_SingleStep.png "Single Step Recipe")
 </details> 
 
 
 <details>
-  <summary>Recipe Page example, continued . . . Reviews</summary>
+  <summary>Recipe Page example, multipe Steps</summary>
     
-  ![Home](/Screenshots_Kindle/reviews.png "Reviews")
+  ![Home](/Screenshots_Kindle/Recipe_MultiStep1.png "Multiple Steps 1/2")
 </details> 
 
+<details>
+  <summary>Recipe Page example, multipe Steps continued</summary>
+    
+  ![Home](/Screenshots_Kindle/Recipe_MultiStep2.png "Multiple Steps 2/2")
+</details> 
 
+<details>
+  <summary>Error Page - Invalid API Token</summary>
+    
+  ![Home](/Screenshots_Kindle/error_API.png "Invalid API Token")
+</details> 
+
+<details>
+  <summary>Error Page - Invalid URL</summary>
+    
+  ![Home](/Screenshots_Kindle/error_URL.png "Host cannot be reached")
+</details> 
 
 ## Build Locally
     
