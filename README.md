@@ -193,7 +193,7 @@ If you want to run RecipeBook without Docker, a python virtual environment is re
 
 1. [Download](https://github.com/NBPub/RecipeBook-Tandoor/archive/refs/heads/main.zip) the code in the repository. Click the green code button at the top of the page for options.
 
-2. Extract the folder contents. Copy the files+folders within "app" directory and "requirements.txt" to a new directory. Keep "ExampleRecipes" folder if you want to test with example data. All other contents can be deleted.
+2. Extract the folder contents. Copy the files+folders within "app" directory and "requirements.txt" to a new directory. All other contents can be deleted.
 
 3. Move to newly made directory and create and activate **venv**.
 
