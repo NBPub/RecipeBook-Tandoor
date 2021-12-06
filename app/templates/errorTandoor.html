@@ -1,0 +1,31 @@
+<!doctype html>
+<title>{{ HomePageTitle }}</title>
+<style>
+.larger{
+  font-size: {{ LargeFont }};
+  color: red;
+}
+
+.smaller{
+  font-size: {{ SmallFont }};
+  color: black;
+}
+
+.link{
+  font-size: {{ SmallFont }};
+  color: blue;
+}
+</style>
+
+<h1>{{ title }}</h1>
+<p class="larger">Error: {{error}}</p>
+<br /><hr />
+<p class="smaller">Recipe data cannot be processed. . . Invalid API token and/or URL provided. Please set correct values as Environmental Variables and restart app.</p>
+<a class="link" href="https://github.com/NBPub/RecipeBook-Tandoor#application-setup">See Github for additional information.</a>
+<br />
+<p class="smaller">Ensure that URL matches Tandoor instance. Provided URL:</p>
+<a class="link" href="{{ URL }}">{{ URL }}</a>
+<br /><hr />
+<br />
+<br />
+<a class="link" href="{{ url_for('homepage') }}">{{ HomePageTitle }}</a>
