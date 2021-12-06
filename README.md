@@ -92,8 +92,8 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-p 5000:5000` | Default Flask port. Internal port should not be changed. |
 | `-e TZ=America/Los_Angeles` | Set timezone for logging using tzdata. |
 | `-e PAGE_TITLE=Recipe Book` | Home page title. Displays on tab. |
-| `-e FONT_SMALL=30` | Default size for "small" sections: **Description** and **Reviews**. Can be changed to any `<integer>` to adjust web-page display. |
-| `-e FONT_LARGE=36` | Default size for "large" sections: **Ingredients** and **Instructions**. Can be changed to any `<integer>` to adjust web-page display. |
+| `-e FONT_SMALL=30` | Default size for "small" sections: **Description** and **Keywords**. Can be changed to any `<integer>` to adjust web-page display. |
+| `-e FONT_LARGE=36` | Default size for "large" sections: **Steps** data. Can be changed to any `<integer>` to adjust web-page display. |
 | `-e Token=PasteYourTokenHere` | Default Token is an empty string. API calls will not work unless a valid token is provided. |
 | `-e URL=http://localhost:8080/` | Default URL for Tandoor instance. This should be changed to the appropriate base URL for Tandoor. |
 
@@ -103,13 +103,14 @@ Container images are configured using parameters passed at runtime (such as thos
 
 **Version 1.0** is released. If issues are found or enhancements dreamt, they will come here until pushed to a new version.
 
-I do not use Tandoor, and built this application with recipes downloaded from the demo website. Therefore, many features may not be supported. Please open an issue if you have ideas for improvements or bug-fixes. Listed below are some limitations I am aware of, but there are likely many others I have not encountered. Thank you for your help!
+I do not use Tandoor, and built this application with recipes downloaded from the [demo website](https://app.tandoor.dev/). Therefore, many features may not be supported. Please open an issue if you have ideas for improvements or bug-fixes. Listed below are some limitations I am aware of, but there are likely many others I have not encountered. Thank you for your help!
 
 **Known Limitations**
 * Support for non-text based Steps (Type = time / file / recipe)
 * Ratings and comments <- should be easy to integrate
 
 **Possible Future Improvements**
+* Provide option to not load images by default. Restore image button will still be present.
 * Cache recipe data to reduce needed API calls, provide functionality without accessing Tandoor
   * More local storage vs Less network traffic
 * wget instead of curl for healthchecks - does this provide smaller docker image?
