@@ -187,12 +187,11 @@ I do not use Tandoor, and built this application with recipes downloaded from th
 
 ## Build Locally
     
-*Current instructions are for the NexctCloud Cookbook version. Tandoor local build instructions to be added soon.*    
-*Leaving these in here for a general example*
+*Instructions may not be comprehensive. Docker deployment is recommended.*
 
-If you want to run RecipeBook without Docker, a python virtual environment is recommended. See [Flask Installation](https://flask.palletsprojects.com/en/2.0.x/installation/) for more details (and appropriate code for Windows). [Python 3.7](https://wiki.python.org/moin/BeginnersGuide/Download) or newer is recommended.
+If you want to run RecipeBook without Docker, a python virtual environment is recommended. See [Flask Installation](https://flask.palletsprojects.com/en/2.0.x/installation/) for more details (and appropriate commands for Windows). [Python 3.7](https://wiki.python.org/moin/BeginnersGuide/Download) or newer is recommended.
 
-1. [Download](https://github.com/NBPub/RecipeBook/archive/refs/heads/main.zip) the code in the repository. Click the green code button at the top of the page for options.
+1. [Download](https://github.com/NBPub/RecipeBook-Tandoor/archive/refs/heads/main.zip) the code in the repository. Click the green code button at the top of the page for options.
 
 2. Extract the folder contents. Copy the files+folders within "app" directory and "requirements.txt" to a new directory. Keep "ExampleRecipes" folder if you want to test with example data. All other contents can be deleted.
 
@@ -216,9 +215,9 @@ $ pip install -r requirements.txt
 $ nano .flaskenv
 ```
 
-*Additionally, it can be used to set values to environmental variables, as described in [Docker Parameters](https://github.com/NBPub/RecipeBook#parameters). Additions to base code may be required for this step (python-dotenv package, `load_dotenv()`)*
+*Additionally, it can be used to set values to environmental variables, as described in [Docker Parameters](https://github.com/NBPub/RecipeBook-Tandoor#parameters). Additions to base code may be required for this step (python-dotenv package, `load_dotenv()`). Note that all local variables associated with environmental variables can be modified by changing the code. See next step for an example*
 
-6. Modify the path to recipe data. See line 13 of [RecipeReader.py](https://github.com/NBPub/RecipeBook/blob/main/app/RecipeReader.py). If you are using the ExampleRecipe folder, specify its location. Using a raw text string may be beneficial, but shouldn't be required.  `path = r'path/to/ExampleRecipes'`
+6. Modify URL and API-Token variables. See lines 15 and 19 of [Tandoor_Reader.py](https://github.com/NBPub/RecipeBook-Tandoor/blob/main/app/Tandoor_Reader.py). `URL=<put your Tandoor URL here>` and `Token=<put your token here>`
 
 7. Run! Open site in web browser (http://localhost:5000). 
 
