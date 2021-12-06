@@ -1,17 +1,17 @@
-# RecipeBook
-Python web-app (Flask) to browse Nextcloud Cookbook recipes on the local network. Designed for use with E-Ink screens. [Tandoor](https://docs.tandoor.dev/) integration is in progress.
+# RecipeBook - Tandoor
+Python web-app (Flask) to browse [Tandoor](https://docs.tandoor.dev/) recipes on the local network. Designed for use with E-Ink screens. 
 
-[Deploy with Docker](https://github.com/NBPub/RecipeBook#application-setup) • [Docker - Tandoor Version](https://github.com/NBPub/RecipeBook#setup-for-tandoor) • [Local Build](https://github.com/NBPub/RecipeBook#build-locally) • [Screenshots](https://github.com/NBPub/RecipeBook#screenshots) • [Upcoming](https://github.com/NBPub/RecipeBook#upcoming)
+For a version that works with [Nextcloud Cookbook](https://apps.nextcloud.com/apps/cookbook),  please navigate to [RecipeBook](https://github.com/NBPub/RecipeBook)
+
+[Deploy with Docker](https://github.com/NBPub/RecipeBook-Tandoor#application-setup) • [Local Build](https://github.com/NBPub/RecipeBook-Tandoor#build-locally) • [Screenshots](https://github.com/NBPub/RecipeBook-Tandoor#screenshots) • [Upcoming](https://github.com/NBPub/RecipeBook-Tandoor#upcoming)
 
 ## Overview
 
-I created this to access recipes from [Nextcloud Cookbook](https://apps.nextcloud.com/apps/cookbook) and easily view them on Kindle's web browser whilst cooking. The view is designed for such screens, and is not as nice as the actual app. Therefore, accessing your Nextcloud website with a mobile device or tablet would just as effectively provide kitchen access to Cookbook.
+I created this to access recipes from [Tandoor](https://docs.tandoor.dev/) and easily view them on Kindle's web browser whilst cooking. The view is designed for such screens, and is not as nice as the actual app. Therefore, accessing your Tandoor website with a mobile device or tablet would just as effectively provide kitchen access to your recipes. This project is not associated with Tandoor.
 
 Please note that the web application is very basic and should not be run on untrusted networks. It is not designed to be exposed publicly.
 
-The machine running the app should have access to the Nextcloud user data (directly or via network share). The data is supplied to the container using volume binding. See [LinuxServer.io](https://docs.linuxserver.io/) and [Docker](https://docs.docker.com/) for more information on Docker containers.
-
-This is my first project using Flask and building Docker containers. Feedback is appreciated.
+The application reads data from Tandoor using its API, and a valid token must be provided. This is (an extension of) my first project using Flask and building Docker containers. Feedback is appreciated.
 
 ### Supported Architectures
 
@@ -27,96 +27,19 @@ Images are available for the following architectures:
 
 ## Application Setup
 
-Install and run using docker, examples provided below.
+Install and run using docker, examples provided below. See [LinuxServer.io](https://docs.linuxserver.io/) and [Docker](https://docs.docker.com/) for more information on Docker containers.
 
-Access main page at `<your-ip>:5000`. See below for changing port number.
+Access main page at `<your-ip>:5000`. See [below](https://github.com/NBPub/RecipeBook-Tandoor#parameters) for changing port number.
 
-<details>
-  <summary>NC Cookbook Docker Details</summary>
-  
-  ### Usage
-
-This container is designed to run on the same machine hosting Nextcloud data. The volume binding below is for the directory containing the recipes stored by Nextcloud Cookbook. Alternatively, the data can be copied to another location, and then that location can be bound to "/recipe_data".
-
-If using the [LSIO NextCloud docker container](https://github.com/linuxserver/docker-nextcloud#usage), the folder may be in the following location:
-```
-<volume bound to NextCloud data "/data">/<user>/files/Recipes
-```
-Example configurations to build container are shown below. Environmental Variables are listed with default values and do not need to be specified. Healthcheck is optional.
-
-### docker-compose
-
-```yaml
----
-version: "2"
-services:
-  recipe:
-    image: nbpub/recipelook:latest
-    container_name: recipebook
-    volumes:
-      - <path/to/recipes-folder>:/recipe_data:ro
-    ports:
-      - 5000:5000
-    environment:
-      - TZ=America/Los_Angeles
-      - PAGE_TITLE=Recipe Book
-      - IMAGE_SIZE=Full
-      - FONT_SMALL=30
-      - FONT_LARGE=36
-    healthcheck:
-      test: curl -I --fail http://localhost:5000 || exit 1
-      interval: 300s
-      timeout: 10s
-      start_period: 5s
-    restart: unless-stopped
-```
-
-### docker cli ([click here for more info](https://docs.docker.com/engine/reference/commandline/cli/))
-
-```bash
-docker run -d \
-  --name=recipebook \
-  -e TZ=America/Los_Angeles \
-  -e PAGE_TITLE=Recipe Book \
-  -e IMAGE_SIZE=Full \
-  -e FONT_SMALL=30 \
-  -e FONT_LARGE=36 \
-  -p 5000:5000 \
-  -v <path/to/recipes-folder>:/recipe_data:ro \
-  --restart unless-stopped \
-  nbpub/recipelook:latest
-```
-
-### Parameters
-
-Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<external>:<internal>` respectively. For example, `-p 5001:5000` would expose port `5000` from inside the container to be accessible from the host's IP on port `5001` outside the container.
-
-| Parameter | Function |
-| :----: | --- |
-| `-p 5000` | Default Flask port. |
-| `-e TZ=America/Los_Angeles` | Set timezone for logging using tzdata. |
-| `-e PAGE_TITLE=Recipe Book` | Home page title. Displays on tab. |
-| `-e IMAGE_SIZE=Full` | Default image size to load. Can be changed to `Thumbnails`. Recipe pages have a toggle button to switch between sizes. |
-| `-e FONT_SMALL=30` | Default size for "small" sections: **Description** and **Reviews**. Can be changed to any `<integer>` to adjust web-page display. |
-| `-e FONT_LARGE=36` | Default size for "large" sections: **Ingredients** and **Instructions**. Can be changed to any `<integer>` to adjust web-page display. |
-| `-v /recipe_data` | Recipes in this folder are read and displayed on the homepage. A refresh button is provided to re-parse recipes in the volume. Read only option added for example "ro" |
-  
-</details>
-
-## Setup for Tandoor
-  
-  <details>
-  <summary>Tandoor Docker Details</summary>
-  
-  ### Usage
+### Usage
 
 *This section is in progress. Docker images not available and details subject to change.*    
     
-This container uses data from your Tandoor instance by calling its API. Therefore, an appropriate API Token and URL are required for it to function. The initial run will require the Tandoor instance to be available. After the initial data gathering, information for pages is stored within the container to minimize calls to Tandoor.
+This container uses data from your Tandoor instance by calling its API. Therefore, an appropriate API Token and URL are required for it to function. Data for the homepage will be saved, and only refreshing the data will require a valid token and URL. However, each recipe-page needs to use the API, and therefore Tandoor must be accessible.
 
 Find your API Token at `http://<your-URL>/settings/#api`
 
-Example configurations to build container are shown below. Environmental Variables are listed with default values and do not need to be specified. Healthcheck is optional.
+Example configurations to build container are shown below. Some Environmental Variables are listed with default values and do not need to be specified, `Token` and `URL` must be correctly set for the application to function. Healthcheck is optional.
 
 ### docker-compose
 
@@ -132,7 +55,6 @@ services:
     environment:
       - TZ=America/Los_Angeles
       - PAGE_TITLE=Recipe Book
-      - IMAGE_SIZE=Full
       - FONT_SMALL=30
       - FONT_LARGE=36
       - Token=PasteYourTokenHere
@@ -152,7 +74,6 @@ docker run -d \
   --name=recipebook \
   -e TZ=America/Los_Angeles \
   -e PAGE_TITLE=Recipe Book \
-  -e IMAGE_SIZE=Full \
   -e FONT_SMALL=30 \
   -e FONT_LARGE=36 \
   -e Token=PasteYourTokenHere
@@ -168,32 +89,39 @@ Container images are configured using parameters passed at runtime (such as thos
 
 | Parameter | Function |
 | :----: | --- |
-| `-p 5000` | Default Flask port. |
+| `-p 5000:5000` | Default Flask port. Internal port should not be changed. |
 | `-e TZ=America/Los_Angeles` | Set timezone for logging using tzdata. |
 | `-e PAGE_TITLE=Recipe Book` | Home page title. Displays on tab. |
-| `-e IMAGE_SIZE=Full` | Default image size to load. Can be changed to `Thumbnails`. Recipe pages have a toggle button to switch between sizes. |
 | `-e FONT_SMALL=30` | Default size for "small" sections: **Description** and **Reviews**. Can be changed to any `<integer>` to adjust web-page display. |
 | `-e FONT_LARGE=36` | Default size for "large" sections: **Ingredients** and **Instructions**. Can be changed to any `<integer>` to adjust web-page display. |
 | `-e Token=PasteYourTokenHere` | Default Token is an empty string. API calls will not work unless a valid token is provided. |
 | `-e URL=http://localhost:8080/` | Default URL for Tandoor instance. This should be changed to the appropriate base URL for Tandoor. |
+
   
-</details>
-  
+
 ## Upcoming
 
 **Version 1.0** is released. If issues are found or enhancements dreamt, they will come here until pushed to a new version.
 
-**Version 1.0, tag=Tandoor:**
-* Compatability with [Tandoor Recipes](https://github.com/TandoorRecipes/recipes)
+I do not use Tandoor, and built this application with recipes downloaded from the demo website. Therefore, many features may not be supported. Please open an issue if you have ideas for improvements or bug-fixes. Listed below are some limitations I am aware of, but there are likely many others I have not encountered. Thank you for your help!
 
-**Maybe Later**
+**Known Limitations**
+* Support for non-text based Steps (Type = time / file / recipe)
+* Ratings and comments <- should be easy to integrate
+
+**Possible Future Improvements**
+* Cache recipe data to reduce needed API calls, provide functionality without accessing Tandoor
+  * More local storage vs Less network traffic
 * wget instead of curl for healthchecks - does this provide smaller docker image?
+* keyword handling
 * Add tests
 * clean up CSS styling
 * Volume binding for configuration folder, let user poke through directories
 
 
 ## Screenshots
+
+*current images are from NextCloud version, will be adjusted*
 
 <details>
   <summary>Home Page, lists all recipes</summary>
@@ -244,7 +172,8 @@ Container images are configured using parameters passed at runtime (such as thos
 
 ## Build Locally
     
-*Current instructions are for the NexctCloud Cookbook version. Tandoor local build instructions to be added later.*    
+*Current instructions are for the NexctCloud Cookbook version. Tandoor local build instructions to be added soon.*    
+*Leaving these in here for a general example*
 
 If you want to run RecipeBook without Docker, a python virtual environment is recommended. See [Flask Installation](https://flask.palletsprojects.com/en/2.0.x/installation/) for more details (and appropriate code for Windows). [Python 3.7](https://wiki.python.org/moin/BeginnersGuide/Download) or newer is recommended.
 
