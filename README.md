@@ -113,6 +113,8 @@ I do not use Tandoor, and built this application with recipes downloaded from th
 * Provide option to not load images by default. Restore image button will still be present.
 * Cache recipe data to reduce needed API calls, provide functionality without accessing Tandoor
   * More local storage vs Less network traffic
+
+* Clean up exception handling code
 * wget instead of curl for healthchecks - does this provide smaller docker image?
 * keyword handling
 * Add tests
