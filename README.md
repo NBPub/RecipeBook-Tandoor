@@ -215,9 +215,11 @@ $ pip install -r requirements.txt
 $ nano .flaskenv
 ```
 
-*Additionally, it can be used to set values to environmental variables, as described in [Docker Parameters](https://github.com/NBPub/RecipeBook-Tandoor#parameters). Additions to base code may be required for this step (python-dotenv package, `load_dotenv()`). Note that all local variables associated with environmental variables can be modified by changing the code. See next step for an example*
+*Note that all local variables associated with environmental variables can be modified by changing the code. See next step for an example*
 
-6. Modify URL and API-Token variables. See lines 15 and 19 of [Tandoor_Reader.py](https://github.com/NBPub/RecipeBook-Tandoor/blob/main/app/Tandoor_Reader.py). `URL=<put your Tandoor URL here>` and `Token=<put your token here>`
+6. Modify URL and API-Token variables. See lines 15 and 19 of [Tandoor_Reader.py](https://github.com/NBPub/RecipeBook-Tandoor/blob/main/app/Tandoor_Reader.py). `URL="<put your Tandoor URL here>"` and `Token="<put your token here>"`.
+
+*Optional* - Modify other local variables that are typically specified by docker-container environmental variables. See lines 25-27 or the same file. Values can be changed by modifying the second entry in `environ.get("<environmental variable name>", "<parameter to be changed>"`.
 
 7. Run! Open site in web browser (http://localhost:5000). 
 
